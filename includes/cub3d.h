@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 10:22:29 by halnuma           #+#    #+#             */
-/*   Updated: 2025/06/04 15:52:55 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/06 11:33:58 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define MINIMAP_X_START	40
 # define MINIMAP_Y_START	784
 # define MINIMAP_BORDER		5
-# define MINIMAP_P_SIZE		4
+# define MINIMAP_P_SIZE		6
 
 typedef enum e_keymap
 {
@@ -58,6 +58,12 @@ typedef struct s_point
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_vect
+{
+	int	x;
+	int	y;
+}	t_vect;
 
 typedef struct s_win_img
 {
@@ -83,7 +89,7 @@ typedef struct s_game
 	char		**paths;
 	char		**colors;
 	int			steps;
-	int			direction;
+	t_vect		direction;
 	t_key		keys[KEY_MEMORY];
 }	t_game;
 
@@ -112,5 +118,11 @@ int			center_tile(char c);
 
 // ----- MINIMAP ----- //
 void		draw_minimap(t_game *game);
+
+// ----- TILES ----- //
+int			test_up_tiles(t_game *game, int key_pressed);
+int			test_down_tiles(t_game *game, int key_pressed);
+int			test_right_tiles(t_game *game, int key_pressed);
+int			test_left_tiles(t_game *game, int key_pressed);
 
 #endif

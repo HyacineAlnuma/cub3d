@@ -6,7 +6,7 @@
 #    By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 23:20:17 by val               #+#    #+#              #
-#    Updated: 2025/06/04 10:33:01 by halnuma          ###   ########.fr        #
+#    Updated: 2025/06/06 10:51:03 by halnuma          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ SRC_FILES = \
 	map_utils.c \
 	time_utils.c \
 	parsing.c \
-	minimap.c
+	minimap.c \
+	tiles_testing.c
 
 HEADERS = \
 	cub3d.h

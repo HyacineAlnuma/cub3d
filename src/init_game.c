@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 10:25:01 by halnuma           #+#    #+#             */
-/*   Updated: 2025/06/04 13:28:26 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/06 10:58:26 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,20 @@ void	run_game(t_game *game)
 	if (!game->mlx)
 	{
 		ft_putstr_fd("Error while loading mlx", 2);
-		free_map(game->map);
-		exit(EXIT_FAILURE);
+		exit_game(game);
 	}
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 	if (!game->win)
 	{
 		ft_putstr_fd("Error while loading window", 2);
-		free_map(game->map);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-		exit(EXIT_FAILURE);
+		exit_game(game);
 	}
 	img.img_ptr = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!img.img_ptr)
+	{
+		ft_putstr_fd("Error while creating image", 2);
+		exit_game(game);
+	}
 	img.data = mlx_get_data_addr(img.img_ptr, &img.bpp, &img.size_line, &img.endian);
 	game->img = &img;
 	draw_minimap(game);
