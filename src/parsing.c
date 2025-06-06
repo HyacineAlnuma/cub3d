@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 11:03:39 by halnuma           #+#    #+#             */
-/*   Updated: 2025/06/06 11:34:22 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/06 14:39:48 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,27 @@ int	check_tiles_borders(t_game *game)
 					return (0);
 				game->pos_x = (double)j + 0.5;
 				game->pos_y = (double)(i - 8) + 0.5;
+				if (game->file_content[i][j] == 'N')
+				{
+					game->rad_direction = PI / 2;
+					rad_to_vect(&game->direction, game->rad_direction);
+				}
+				else if (game->file_content[i][j] == 'S')
+				{
+					game->rad_direction = 3 * PI / 2;
+					rad_to_vect(&game->direction, game->rad_direction);	
+				}
+				else if (game->file_content[i][j] == 'E')
+				{
+					game->rad_direction = PI;
+					rad_to_vect(&game->direction, game->rad_direction);
+				}
+				else if (game->file_content[i][j] == 'W')
+				{
+					game->rad_direction = 0;
+					rad_to_vect(&game->direction, game->rad_direction);
+				}
+				printf("x:%f y:%f\n", game->direction.x, game->direction.y);
 				player = 1;
 			}
 			if (!check_tile_validity(game->file_content[i][j]))

@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 10:22:29 by halnuma           #+#    #+#             */
-/*   Updated: 2025/06/06 11:33:58 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/06 14:54:10 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/Xlib.h>
 # include <stdint.h>
 # include <stdlib.h>
+# include <math.h>
 
 # include "libft.h"
 # include "mlx.h"
@@ -35,7 +36,8 @@
 # define MINIMAP_X_START	40
 # define MINIMAP_Y_START	784
 # define MINIMAP_BORDER		5
-# define MINIMAP_P_SIZE		6
+# define MINIMAP_P_SIZE		8
+# define PI 				3.141592653589793
 
 typedef enum e_keymap
 {
@@ -61,8 +63,8 @@ typedef struct s_point
 
 typedef struct s_vect
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 }	t_vect;
 
 typedef struct s_win_img
@@ -90,6 +92,7 @@ typedef struct s_game
 	char		**colors;
 	int			steps;
 	t_vect		direction;
+	float		rad_direction;
 	t_key		keys[KEY_MEMORY];
 }	t_game;
 
@@ -118,11 +121,17 @@ int			center_tile(char c);
 
 // ----- MINIMAP ----- //
 void		draw_minimap(t_game *game);
+void 		draw_player(t_game *game);
 
 // ----- TILES ----- //
 int			test_up_tiles(t_game *game, int key_pressed);
 int			test_down_tiles(t_game *game, int key_pressed);
 int			test_right_tiles(t_game *game, int key_pressed);
 int			test_left_tiles(t_game *game, int key_pressed);
+int			check_corners(t_game *game, double pos_x, double pos_y);
+
+// ----- MOVE ----- //
+void		rad_to_vect(t_vect *direction, float rad);
+int			mouse_move(int x, int y, t_game *game);
 
 #endif

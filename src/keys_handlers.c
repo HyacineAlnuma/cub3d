@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 23:29:22 by val               #+#    #+#             */
-/*   Updated: 2025/06/06 10:50:34 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/06 15:06:53 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,70 @@ void	handle_keys(t_game *game)
 
 void	handle_dir_input(t_game *game, double pos_x, double pos_y, int key_pressed)
 {
-	if (key_pressed == KEY_UP && !test_up_tiles(game, key_pressed))
-		return ;
-	else if (key_pressed == KEY_DOWN && !test_down_tiles(game, key_pressed))
-		return ;
-	else if (key_pressed == KEY_RIGHT && !test_right_tiles(game, key_pressed))
-		return ;
-	else if (key_pressed == KEY_LEFT && !test_left_tiles(game, key_pressed))
+	(void)key_pressed;
+	if (!check_corners(game, pos_x, pos_y))
 		return ;
 	game->pos_x = pos_x;
 	game->pos_y = pos_y;
 	draw_minimap(game);
 }
 
+// void	handle_dir_input(t_game *game, double pos_x, double pos_y, int key_pressed)
+// {
+// 	if (key_pressed == KEY_UP && !test_up_tiles(game, key_pressed))
+// 		return ;
+// 	else if (key_pressed == KEY_DOWN && !test_down_tiles(game, key_pressed))
+// 		return ;
+// 	else if (key_pressed == KEY_RIGHT && !test_right_tiles(game, key_pressed))
+// 		return ;
+// 	else if (key_pressed == KEY_LEFT && !test_left_tiles(game, key_pressed))
+// 		return ;
+// 	(void)key_pressed;
+// 	game->pos_x = pos_x;
+// 	game->pos_y = pos_y;
+// 	draw_minimap(game);
+// }
+
 int	key_hook(int key_pressed, void *param)
 {
 	t_game	*game;
 
 	game = param;
-	(void)key_pressed;
 	if (key_pressed == KEY_QUIT)
 		exit_game(game);
 	// if (key_pressed == KEY_TEST && get_time_ms() - key.time > 50000)
 	// 	ft_putstr_fd("TEST\n", 2);
 	if (key_pressed == KEY_UP)
-		handle_dir_input(game, game->pos_x, (game->pos_y - 0.125), key_pressed);
+		handle_dir_input(game, game->pos_x + (0.125 * game->direction.x), game->pos_y - (0.125 * game->direction.y), key_pressed);
 	if (key_pressed == KEY_RIGHT)
-		handle_dir_input(game, (game->pos_x + 0.125), game->pos_y, key_pressed);
+		handle_dir_input(game, game->pos_x + (0.125 * game->direction.y), game->pos_y + (0.125 * game->direction.x), key_pressed);
 	if (key_pressed == KEY_DOWN)
-		handle_dir_input(game, game->pos_x, (game->pos_y + 0.125), key_pressed);
+		handle_dir_input(game, game->pos_x - (0.125 * game->direction.x), + game->pos_y + (0.125 * game->direction.y), key_pressed);
 	if (key_pressed == KEY_LEFT)
-		handle_dir_input(game, (game->pos_x - 0.125), game->pos_y, key_pressed);
+		handle_dir_input(game, game->pos_x - (0.125 * game->direction.y), game->pos_y - (0.125 * game->direction.x), key_pressed);
 	return (1);
 }
+
+// int	key_hook(int key_pressed, void *param)
+// {
+// 	t_game	*game;
+
+// 	game = param;
+// 	(void)key_pressed;
+// 	if (key_pressed == KEY_QUIT)
+// 		exit_game(game);
+// 	// if (key_pressed == KEY_TEST && get_time_ms() - key.time > 50000)
+// 	// 	ft_putstr_fd("TEST\n", 2);
+// 	if (key_pressed == KEY_UP)
+// 		handle_dir_input(game, game->pos_x, (game->pos_y - 0.125), key_pressed);
+// 	if (key_pressed == KEY_RIGHT)
+// 		handle_dir_input(game, (game->pos_x + 0.125), game->pos_y, key_pressed);
+// 	if (key_pressed == KEY_DOWN)
+// 		handle_dir_input(game, game->pos_x, (game->pos_y + 0.125), key_pressed);
+// 	if (key_pressed == KEY_LEFT)
+// 		handle_dir_input(game, (game->pos_x - 0.125), game->pos_y, key_pressed);
+// 	return (1);
+// }
 
 void	handle_key(t_key key, t_game *game)
 {

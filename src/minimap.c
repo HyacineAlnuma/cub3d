@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 09:58:29 by halnuma           #+#    #+#             */
-/*   Updated: 2025/06/06 11:26:04 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/06 15:07:03 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	draw_player(t_game *game)
 	while (i < MINIMAP_P_SIZE)
 	{
 		j = 0;
-		while (j < (2 * i - 1))
+		while (j < MINIMAP_P_SIZE)
 		{
 			put_pixel_to_image(
 				game->img,
