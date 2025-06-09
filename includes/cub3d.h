@@ -6,7 +6,7 @@
 /*   By: halnuma <halnuma@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 10:22:29 by halnuma           #+#    #+#             */
-/*   Updated: 2025/06/06 14:54:10 by halnuma          ###   ########.fr       */
+/*   Updated: 2025/06/09 10:04:01 by halnuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "mlx.h"
 # include "mlx_int.h"
 # include "stdbool.h"
-// # include "crazypng.h"
 
 # define KEY_MEMORY	10
 
@@ -38,6 +37,7 @@
 # define MINIMAP_BORDER		5
 # define MINIMAP_P_SIZE		8
 # define PI 				3.141592653589793
+# define MOUSE_SENS			0.006
 
 typedef enum e_keymap
 {
